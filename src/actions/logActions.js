@@ -1,7 +1,16 @@
-import axios                                                        from 'axios';
-import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOGS, DELETE_LOG } from './types';
+import axios                                                                                   from 'axios';
+import {
+    GET_LOGS,
+    SET_LOADING,
+    LOGS_ERROR,
+    ADD_LOGS,
+    DELETE_LOG,
+    SET_CURRENT,
+    CLEAR_CURRENT,
+    UPDATE_LOG,
+} from './types';
 
-export const getLogs = () => async (dispatch) => {
+export const getLogs = () => async ( dispatch ) => {
     try {
         setLoading();
 
@@ -13,13 +22,13 @@ export const getLogs = () => async (dispatch) => {
         } );
     } catch (e) {
         dispatch( {
-            type : LOGS_ERROR,
-            payload : e.response.data
+            type    : LOGS_ERROR,
+            payload : e.response.data,
         } );
     }
 };
 
-export const addLog = (log) => async (dispatch) => {
+export const addLog = ( log ) => async ( dispatch ) => {
     try {
         setLoading();
 
@@ -31,13 +40,13 @@ export const addLog = (log) => async (dispatch) => {
         } );
     } catch (e) {
         dispatch( {
-            type : LOGS_ERROR,
-            payload : e.response.data
+            type    : LOGS_ERROR,
+            payload : e.response.data,
         } );
     }
 };
 
-export const deleteLog = (id) => async (dispatch) => {
+export const deleteLog = ( id ) => async ( dispatch ) => {
     try {
         setLoading();
 
@@ -45,15 +54,51 @@ export const deleteLog = (id) => async (dispatch) => {
 
         dispatch( {
             type    : DELETE_LOG,
-            payload : id
+            payload : id,
         } );
 
     } catch (e) {
         dispatch( {
-            type : LOGS_ERROR,
-            payload : e.response.data
+            type    : LOGS_ERROR,
+            payload : e.response.data,
         } );
     }
+};
+
+export const updateLog = ( log ) => async ( dispatch ) => {
+    try {
+        setLoading();
+
+        console.log('log',log);
+
+        const res = await axios.put( '/logs/' + log.id, log );
+
+        console.log(res);
+
+        dispatch( {
+            type    : UPDATE_LOG,
+            payload : res.data,
+        } );
+
+    } catch (e) {
+        dispatch( {
+            type    : LOGS_ERROR,
+            payload : e.response.data,
+        } );
+    }
+};
+
+export const setCurrent = ( log ) => {
+    return {
+        type    : SET_CURRENT,
+        payload : log,
+    };
+};
+
+export const clearCurrent = () => {
+    return {
+        type : CLEAR_CURRENT,
+    };
 };
 
 export const setLoading = () => {

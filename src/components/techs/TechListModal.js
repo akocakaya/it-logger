@@ -16,8 +16,6 @@ const TechListModal = () => {
 
         let res = await axios.get( `/techs` );
 
-        console.log(res);
-
         setTechs( res.data );
         setLoading( false );
     };
