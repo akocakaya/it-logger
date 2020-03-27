@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { connect }       from 'react-redux';
+import { searchLog} from '../../actions/logActions';
 
-const SearchBar = props => {
+const SearchBar = ({ searchLog }) => {
+    const text = useRef('');
+
+    const onChange = () => {
+        searchLog(text.current.value);
+    };
+
     return (
         <nav
             style = { { marginBottom : '30px' } }
@@ -12,7 +20,9 @@ const SearchBar = props => {
                         <input
                             id = 'search'
                             type = 'search'
-
+                            placeholder='Search Logs...'
+                            ref={text}
+                            onChange={onChange}
                         />
                         <label
                             className = 'label-icon'
@@ -28,4 +38,4 @@ const SearchBar = props => {
     );
 };
 
-export default SearchBar;
+export default connect(null, {searchLog})(SearchBar);

@@ -8,6 +8,7 @@ import {
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_LOG,
+    SEARCH_LOGS
 } from './types';
 
 export const getLogs = () => async ( dispatch ) => {
@@ -69,14 +70,29 @@ export const updateLog = ( log ) => async ( dispatch ) => {
     try {
         setLoading();
 
-        console.log('log',log);
-
         const res = await axios.put( '/logs/' + log.id, log );
-
-        console.log(res);
 
         dispatch( {
             type    : UPDATE_LOG,
+            payload : res.data,
+        } );
+
+    } catch (e) {
+        dispatch( {
+            type    : LOGS_ERROR,
+            payload : e.response.data,
+        } );
+    }
+};
+
+export const searchLog = ( text ) => async ( dispatch ) => {
+    try {
+        setLoading();
+
+        const res = await axios.get( '/logs?q=' + text );
+
+        dispatch( {
+            type    : SEARCH_LOGS,
             payload : res.data,
         } );
 

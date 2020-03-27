@@ -1,5 +1,4 @@
 import React     from 'react';
-import PropTypes from 'prop-types';
 
 const AddBtn = props => {
     return (
@@ -21,10 +20,6 @@ const AddBtn = props => {
             </ul>
         </div>
     );
-};
-
-AddBtn.propTypes = {
-
 };
 
 export default AddBtn;

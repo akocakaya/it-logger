@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import M                              from 'materialize-css/dist/js/materialize.min';
 import { Provider } from 'react-redux';
 import 'materialize-css/dist/css/materialize.min.css';
