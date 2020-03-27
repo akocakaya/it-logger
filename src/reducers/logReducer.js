@@ -64,6 +64,7 @@ export default ( state = initialState, action ) => {
                 logs    : action.payload
             };
         case LOGS_ERROR:
+            console.log( action.payload );
             return {
                 ...state,
                 error : action.payload,

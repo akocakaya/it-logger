@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { connect }          from 'react-redux';
 import { getTechs }         from '../../actions/techActions';
 
-const TechSelectedOptions = ( { getTechs, tech, tech : { techs, loading } } ) => {
+const TechSelectedOptions = ( { getTechs, tech : { techs, loading } } ) => {
     useEffect( () => {
         getTechs();
         // eslint-disable-next-line
-    }, [tech] );
+    }, [] );
 
     return (
         !loading && techs !== null && techs.map( tech => (
