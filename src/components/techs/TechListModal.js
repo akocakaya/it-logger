@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios                          from 'axios';
+import {connect}                      from 'react-redux';
+import {getTechs}                     from '../../actions/techActions';
 import TechItem                       from './TechItem';
 
-const TechListModal = () => {
-    const [ techs, setTechs ]     = useState( [] );
-    const [ loading, setLoading ] = useState( false );
+const TechListModal = ({ getTechs, tech: {techs, loading} }) => {
 
     useEffect( () => {
         getTechs();
         //es-lint disable next-line
     }, [] );
-
-    const getTechs = async () => {
-        setLoading( true );
-
-        let res = await axios.get( `/techs` );
-
-        setTechs( res.data );
-        setLoading( false );
-    };
 
     return (
         <div
@@ -29,7 +20,7 @@ const TechListModal = () => {
                 <h4>Technician List</h4>
                 <ul className = { 'collection' }>
                     {
-                        !loading && techs.map( ( tech ) =>
+                        !loading && techs != null && techs.map( ( tech ) =>
                             <TechItem
                                 key = { 'log' + tech.id }
                                 tech = { tech }
@@ -42,6 +33,7 @@ const TechListModal = () => {
     );
 };
 
-TechListModal.propTypes = {};
-
-export default TechListModal;
+const mapStateToProps = (state) => ({
+    tech : state.tech
+});
+export default connect(mapStateToProps, {getTechs})(TechListModal);
