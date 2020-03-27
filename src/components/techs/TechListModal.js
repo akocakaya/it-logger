@@ -7,8 +7,8 @@ const TechListModal = ( { getTechs, tech : { techs, loading } } ) => {
 
     useEffect( () => {
         getTechs();
-        //es-lint disable next-line
-    } );
+        //eslint-disable-next-line
+    }, [] );
 
     return (
         <div
@@ -35,4 +35,5 @@ const TechListModal = ( { getTechs, tech : { techs, loading } } ) => {
 const mapStateToProps = ( state ) => ( {
     tech : state.tech,
 } );
+
 export default connect( mapStateToProps, { getTechs } )( TechListModal );
