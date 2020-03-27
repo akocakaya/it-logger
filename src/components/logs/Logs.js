@@ -10,8 +10,8 @@ const Logs = ( { logs, loading, getLogs } ) => {
 
     useEffect( () => {
         getLogs();
-        //es-lint disable next-line
-    }, [] );
+        // es-lint disable next-line
+    });
 
     if (loading || logs === null) {
         return <Preloader />;

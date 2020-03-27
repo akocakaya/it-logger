@@ -13,13 +13,6 @@
       "attention": false,
       "date": "03-05-2020",
       "tech": "John Doe"
-    },
-    {
-      "id": 4,
-      "message": "asdfasdfsadffadsfasdfsfd",
-      "attention": true,
-      "tech": "John Doe",
-      "date": "2020-03-25T07:13:58.949Z"
     }
   ],
   "techs": [
@@ -37,6 +30,11 @@
       "id": 3,
       "firstName": "Sara",
       "lastName": "Wilson"
+    },
+    {
+      "firstName": "asdasd",
+      "lastName": "dasadad",
+      "id": 4
     }
   ]
 }
