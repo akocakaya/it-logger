@@ -1,12 +1,17 @@
-import React, { useRef } from 'react';
-import { connect }       from 'react-redux';
+import React, { useRef, useState } from 'react';
+import { connect }                 from 'react-redux';
 import { searchLog} from '../../actions/logActions';
 
 const SearchBar = ({ searchLog }) => {
-    const text = useRef('');
+    let text = useRef('');
 
     const onChange = () => {
         searchLog(text.current.value);
+    };
+
+    const onClose = () => {
+        text.current.value = '';
+        onChange();
     };
 
     return (
@@ -30,7 +35,7 @@ const SearchBar = ({ searchLog }) => {
                         >
                             <i className = 'material-icons'>search</i>
                         </label>
-                        <i className = 'material-icons'>close</i>
+                        <i className = 'material-icons' onClick={onClose}>close</i>
                     </div>
                 </form>
             </div>
