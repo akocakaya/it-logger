@@ -94,6 +94,7 @@ const AddLogModal = ({addLog}) => {
                     href = { '#!' }
                     onClick = { onSubmit }
                     className = { 'modal-close waves-effect blue waves-light btn' }
+                    style={{ marginRight: '15px'}}
                 >
                     Enter
                 </a>
