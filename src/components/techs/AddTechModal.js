@@ -4,7 +4,7 @@ import {connect}           from 'react-redux';
 import {addTechs}          from '../../actions/techActions';
 
 const AddTechModal = ({addTechs}) => {
-    const [ firstName, setFirstName ]     = useState( '' );
+    const [ firstName, setFirstName ] = useState( '' );
     const [ lastName, setLastName ] = useState( '' );
 
     const onSubmit = () => {
